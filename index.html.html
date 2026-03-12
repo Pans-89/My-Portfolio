@@ -73,23 +73,21 @@
 <body class="selection:bg-white selection:text-black antialiased relative">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-bg/90 backdrop-blur-md border-b border-grid z-[60]">
-        <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-6 flex justify-between items-center">
+    <nav class="fixed top-0 w-full bg-bg/80 backdrop-blur-xl border-b border-grid z-[60]">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-12 py-4 md:py-6 flex justify-between items-center">
             
             <!-- LOGO SECTION -->
             <div class="cursor-pointer relative z-[70] flex items-center" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                
-                <svg viewBox="0 0 100 100" class="h-10 md:h-11 w-auto animate-logo-float hover:scale-110 transition-transform duration-300 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 100 100" class="h-8 md:h-11 w-auto animate-logo-float hover:scale-110 transition-transform duration-300 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="50,10 37,40 63,40" />
                     <polygon points="33,50 15,90 35,90 42,75" />
                     <polygon points="67,50 58,75 65,90 85,90" />
                     <rect x="45" y="55" width="10" height="10" />
                 </svg> 
-                
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-12 text-sm font-medium text-gray-400 uppercase tracking-widest">
+            <div class="hidden md:flex items-center space-x-10 lg:space-x-12 text-sm font-medium text-gray-400 uppercase tracking-widest">
                 <a href="#credentials" class="hover:text-white transition-colors">Credentials</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
                 <a href="#portfolio" class="hover:text-white transition-colors">Work</a>
@@ -101,40 +99,42 @@
             </a>
             
             <!-- Mobile Menu Hamburger Button -->
-            <div id="mobile-menu-btn" class="md:hidden text-2xl text-white cursor-pointer relative z-[70] transition-transform duration-300">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden text-2xl text-white cursor-pointer relative z-[70] transition-transform duration-300 p-2 -mr-2">
                 <i class="fa-solid fa-bars"></i>
-            </div>
+            </button>
         </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-bg z-[50] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
-        <a href="#credentials" class="mobile-link font-display text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Credentials</a>
-        <a href="#experience" class="mobile-link font-display text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Experience</a>
-        <a href="#portfolio" class="mobile-link font-display text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Work</a>
-        <a href="#about" class="mobile-link font-display text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">About</a>
-        <a href="#contact" class="mobile-link mt-8 border border-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors">Let's Talk</a>
+    <div id="mobile-menu" class="fixed inset-0 bg-bg z-[50] flex flex-col items-center justify-center space-y-6 md:space-y-8 opacity-0 pointer-events-none transition-all duration-500 p-6 text-center">
+        <a href="#credentials" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Credentials</a>
+        <a href="#experience" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Experience</a>
+        <a href="#portfolio" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">Work</a>
+        <a href="#about" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors">About</a>
+        <a href="#contact" class="mobile-link mt-8 border border-white px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors">Let's Talk</a>
     </div>
 
-    <main class="max-w-[1400px] mx-auto border-x border-grid min-h-screen">
+    <main class="max-w-[1400px] mx-auto md:border-x border-grid min-h-screen">
 
         <!-- Header / Hero Section -->
-        <header class="pt-40 md:pt-52 pb-20 px-6 md:px-12 border-b border-grid flex flex-col justify-end min-h-[85vh]">
-            <p class="text-gray-400 font-medium mb-6 uppercase tracking-widest text-sm reveal">Let's become partners</p>
-            <h1 class="font-display text-[14vw] md:text-[9vw] leading-[0.85] font-extrabold uppercase tracking-tighter reveal delay-100">
+        <header class="pt-32 md:pt-48 lg:pt-52 pb-16 md:pb-20 px-5 md:px-12 border-b border-grid flex flex-col justify-end min-h-[80vh] lg:min-h-[85vh]">
+            <p class="text-gray-400 font-medium mb-4 md:mb-6 uppercase tracking-widest text-xs md:text-sm reveal">Let's become partners</p>
+            
+            <!-- Fluid Typography using clamp() for better responsiveness -->
+            <h1 class="font-display text-[clamp(3.5rem,10vw,9vw)] leading-[0.9] md:leading-[0.85] font-extrabold uppercase tracking-tighter reveal delay-100 break-words">
                 Network<br>
                 <span class="text-white/30 mix-blend-difference">Engineer</span>
             </h1>
             
-            <div class="mt-16 md:mt-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 reveal delay-200">
-                <p class="max-w-md text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+            <div class="mt-12 md:mt-24 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 lg:gap-10 reveal delay-200">
+                <p class="max-w-md text-gray-400 text-base md:text-lg lg:text-xl font-light leading-relaxed">
                     Student at IDN Boarding School. I specialize in Network Infrastructure and Cloud Architecture, aiming to partner on highly scalable projects.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#portfolio" class="inline-flex items-center justify-center w-16 h-16 border border-white rounded-full hover:bg-white hover:text-black transition-all group">
+                <div class="flex flex-wrap gap-4 w-full lg:w-auto">
+                    <a href="#portfolio" aria-label="Scroll to Portfolio" class="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 border border-white rounded-full hover:bg-white hover:text-black transition-all group shrink-0">
                         <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </a>
-                    <a href="CV_Affan.pdf" download="CV_Affan_Network_Engineer.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 border border-grid px-8 py-4 rounded-full hover:border-white transition-all uppercase tracking-widest text-xs font-bold">
+                    <a href="CV_Affan.pdf" download="CV_Affan_Network_Engineer.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none inline-flex items-center justify-center gap-3 border border-grid px-6 md:px-8 py-4 rounded-full hover:border-white transition-all uppercase tracking-widest text-[10px] md:text-xs font-bold whitespace-nowrap">
                         Download CV
                     </a>
                 </div>
@@ -142,75 +142,75 @@
         </header>
 
         <!-- Tech Stack Marquee -->
-        <div class="relative flex overflow-x-hidden border-b border-grid bg-surface py-8 reveal">
-            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 px-8">
+        <div class="relative flex overflow-x-hidden border-b border-grid bg-surface py-6 md:py-8 reveal">
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-8 md:gap-16 px-4 md:px-8">
                 <!-- Group 1 -->
-                <span class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AWS Cloud</span>
-                <span class="font-display text-4xl md:text-5xl font-bold uppercase text-white">Linux</span>
-                <span class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Cisco Systems</span>
-                <span class="font-display text-4xl md:text-5xl font-bold uppercase text-white">MikroTik</span>
-                <span class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Routing</span>
+                <span class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AWS Cloud</span>
+                <span class="font-display text-3xl md:text-5xl font-bold uppercase text-white">Linux</span>
+                <span class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Cisco Systems</span>
+                <span class="font-display text-3xl md:text-5xl font-bold uppercase text-white">MikroTik</span>
+                <span class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Routing</span>
                 <!-- Group 2 (Aksesibilitas) -->
-                <span aria-hidden="true" class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AWS Cloud</span>
-                <span aria-hidden="true" class="font-display text-4xl md:text-5xl font-bold uppercase text-white">Linux</span>
-                <span aria-hidden="true" class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Cisco Systems</span>
-                <span aria-hidden="true" class="font-display text-4xl md:text-5xl font-bold uppercase text-white">MikroTik</span>
-                <span aria-hidden="true" class="font-display text-4xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Routing</span>
+                <span aria-hidden="true" class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AWS Cloud</span>
+                <span aria-hidden="true" class="font-display text-3xl md:text-5xl font-bold uppercase text-white">Linux</span>
+                <span aria-hidden="true" class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Cisco Systems</span>
+                <span aria-hidden="true" class="font-display text-3xl md:text-5xl font-bold uppercase text-white">MikroTik</span>
+                <span aria-hidden="true" class="font-display text-3xl md:text-5xl font-bold uppercase text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">Routing</span>
             </div>
         </div>
 
         <!-- Credentials Section -->
-        <section id="credentials" class="grid grid-cols-1 md:grid-cols-3 border-b border-grid reveal">
-            <a href="https://bit.ly/CCNABADGE" target="_blank" rel="noopener noreferrer" class="p-10 border-b md:border-b-0 md:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
-                <div class="flex justify-between items-start mb-16">
-                    <i class="fa-solid fa-shield-halved text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
+        <section id="credentials" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-b border-grid reveal">
+            <a href="https://bit.ly/CCNABADGE" target="_blank" rel="noopener noreferrer" class="p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
+                <div class="flex justify-between items-start mb-12 md:mb-16">
+                    <i class="fa-solid fa-shield-halved text-3xl md:text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
                     <div class="w-10 h-10 rounded-full border border-grid group-hover:border-black flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs translate-y-4 -translate-x-4 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"></i>
                     </div>
                 </div>
-                <h3 class="font-display text-3xl md:text-4xl font-bold mb-4 uppercase">CCNA</h3>
+                <h3 class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 uppercase">CCNA</h3>
                 <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm leading-relaxed">Cisco Networking Academy. Introduction to Networks, SRWE, and ENSA.</p>
             </a>
             
-            <a href="https://bit.ly/certificateMTCRE" target="_blank" rel="noopener noreferrer" class="p-10 border-b md:border-b-0 md:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
-                <div class="flex justify-between items-start mb-16">
-                    <i class="fa-solid fa-route text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
+            <a href="https://bit.ly/certificateMTCRE" target="_blank" rel="noopener noreferrer" class="p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
+                <div class="flex justify-between items-start mb-12 md:mb-16">
+                    <i class="fa-solid fa-route text-3xl md:text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
                     <div class="w-10 h-10 rounded-full border border-grid group-hover:border-black flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs translate-y-4 -translate-x-4 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"></i>
                     </div>
                 </div>
-                <h3 class="font-display text-3xl md:text-4xl font-bold mb-4 uppercase">MTCRE</h3>
+                <h3 class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 uppercase">MTCRE</h3>
                 <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm leading-relaxed">MikroTik Certified Routing Engineer. Expert in advanced routing protocols.</p>
             </a>
             
-            <a href="https://bit.ly/MTCNAcertificate" target="_blank" rel="noopener noreferrer" class="p-10 group hover:bg-white hover:text-black transition-all duration-500">
-                <div class="flex justify-between items-start mb-16">
-                    <i class="fa-solid fa-server text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
+            <a href="https://bit.ly/MTCNAcertificate" target="_blank" rel="noopener noreferrer" class="p-8 md:p-10 group hover:bg-white hover:text-black transition-all duration-500 md:col-span-2 lg:col-span-1">
+                <div class="flex justify-between items-start mb-12 md:mb-16">
+                    <i class="fa-solid fa-server text-3xl md:text-4xl text-gray-600 group-hover:text-black transition-colors"></i>
                     <div class="w-10 h-10 rounded-full border border-grid group-hover:border-black flex items-center justify-center overflow-hidden">
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs translate-y-4 -translate-x-4 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"></i>
                     </div>
                 </div>
-                <h3 class="font-display text-3xl md:text-4xl font-bold mb-4 uppercase">MTCNA</h3>
+                <h3 class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 uppercase">MTCNA</h3>
                 <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm leading-relaxed">MikroTik Certified Network Associate. Foundation of network management.</p>
             </a>
         </section>
 
         <!-- Experience Section -->
         <section id="experience" class="border-b border-grid reveal">
-            <div class="px-6 md:px-12 py-16 md:py-24 border-b border-grid">
-                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">Experience</h2>
+            <div class="px-5 md:px-12 py-12 md:py-24 border-b border-grid">
+                <h2 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight">Experience</h2>
             </div>
             
             <div class="flex flex-col">
                 <!-- Exp 1 -->
-                <div class="flex flex-col md:flex-row border-b border-grid hover:bg-surface transition-colors">
-                    <div class="w-full md:w-1/4 p-6 md:p-12 border-b md:border-b-0 md:border-r border-grid text-gray-400 font-mono text-sm uppercase tracking-wider flex items-center">
+                <div class="flex flex-col lg:flex-row border-b border-grid hover:bg-surface transition-colors">
+                    <div class="w-full lg:w-1/4 p-6 md:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs md:text-sm uppercase tracking-wider flex items-center bg-surface/50 lg:bg-transparent">
                         Jul 2024 — Jun 2027
                     </div>
-                    <div class="w-full md:w-3/4 p-6 md:p-12 flex flex-col md:flex-row justify-between items-start gap-6">
+                    <div class="w-full lg:w-3/4 p-6 md:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-6">
                         <div class="md:w-1/2">
-                            <h3 class="font-display text-2xl md:text-3xl font-bold mb-2 uppercase">Network Admin System</h3>
-                            <p class="text-gray-500 font-medium">IDN Boarding School</p>
+                            <h3 class="font-display text-xl md:text-2xl lg:text-3xl font-bold mb-1 md:mb-2 uppercase">Network Admin System</h3>
+                            <p class="text-gray-500 font-medium text-sm md:text-base">IDN Boarding School</p>
                         </div>
                         <p class="md:w-1/2 text-sm text-gray-400 leading-relaxed">
                             Top 2 student in class. Focusing on Network Infrastructure, System Administration, Cloud Architecture, and hands-on Cisco hardware integration.
@@ -219,14 +219,14 @@
                 </div>
 
                 <!-- Exp 2 -->
-                <div class="flex flex-col md:flex-row border-b border-grid hover:bg-surface transition-colors">
-                    <div class="w-full md:w-1/4 p-6 md:p-12 border-b md:border-b-0 md:border-r border-grid text-gray-400 font-mono text-sm uppercase tracking-wider flex items-center">
+                <div class="flex flex-col lg:flex-row border-b border-grid hover:bg-surface transition-colors">
+                    <div class="w-full lg:w-1/4 p-6 md:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs md:text-sm uppercase tracking-wider flex items-center bg-surface/50 lg:bg-transparent">
                         Oct 2025
                     </div>
-                    <div class="w-full md:w-3/4 p-6 md:p-12 flex flex-col md:flex-row justify-between items-start gap-6">
+                    <div class="w-full lg:w-3/4 p-6 md:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-6">
                         <div class="md:w-1/2">
-                            <h3 class="font-display text-2xl md:text-3xl font-bold mb-2 uppercase">Researcher & Class Rep</h3>
-                            <p class="text-gray-500 font-medium">RingNet, Yogyakarta</p>
+                            <h3 class="font-display text-xl md:text-2xl lg:text-3xl font-bold mb-1 md:mb-2 uppercase">Researcher & Class Rep</h3>
+                            <p class="text-gray-500 font-medium text-sm md:text-base">RingNet, Yogyakarta</p>
                         </div>
                         <p class="md:w-1/2 text-sm text-gray-400 leading-relaxed">
                             Selected as the primary school representative to conduct technical observation on industry-standard network monitoring and infrastructure scaling.
@@ -235,14 +235,14 @@
                 </div>
 
                 <!-- Exp 3 -->
-                <div class="flex flex-col md:flex-row hover:bg-surface transition-colors">
-                    <div class="w-full md:w-1/4 p-6 md:p-12 border-b md:border-b-0 md:border-r border-grid text-gray-400 font-mono text-sm uppercase tracking-wider flex items-center">
+                <div class="flex flex-col lg:flex-row hover:bg-surface transition-colors">
+                    <div class="w-full lg:w-1/4 p-6 md:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs md:text-sm uppercase tracking-wider flex items-center bg-surface/50 lg:bg-transparent">
                         Sep 2024
                     </div>
-                    <div class="w-full md:w-3/4 p-6 md:p-12 flex flex-col md:flex-row justify-between items-start gap-6">
+                    <div class="w-full lg:w-3/4 p-6 md:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-6">
                         <div class="md:w-1/2">
-                            <h3 class="font-display text-2xl md:text-3xl font-bold mb-2 uppercase">Peer Technical Tutor</h3>
-                            <p class="text-gray-500 font-medium">Kolej Vokasional Sg. Buloh, MY</p>
+                            <h3 class="font-display text-xl md:text-2xl lg:text-3xl font-bold mb-1 md:mb-2 uppercase">Peer Technical Tutor</h3>
+                            <p class="text-gray-500 font-medium text-sm md:text-base">Kolej Vokasional Sg. Buloh, MY</p>
                         </div>
                         <p class="md:w-1/2 text-sm text-gray-400 leading-relaxed">
                             Delivered international workshops on Network Fundamentals and MikroTik RouterOS configuration using PnetLab for vocational students.
@@ -253,39 +253,39 @@
         </section>
 
         <!-- Value Proposition -->
-        <section class="border-b border-grid bg-white text-black py-24 px-6 md:px-12 text-center reveal">
-            <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight mb-10">Why Hire Me?</h2>
-            <p class="max-w-4xl mx-auto text-xl md:text-3xl font-medium leading-normal text-gray-900">
+        <section class="border-b border-grid bg-white text-black py-16 md:py-24 px-5 md:px-12 text-center reveal">
+            <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-6 md:mb-10">Why Hire Me?</h2>
+            <p class="max-w-4xl mx-auto text-lg md:text-2xl lg:text-3xl font-medium leading-normal md:leading-normal text-gray-900">
                 International teaching experience at age 16, combined with in-depth technical skills in Cisco, MikroTik, and AWS. I design enterprise networks with high security standards and a focus on <span class="border-b-2 border-black">company value</span>.
             </p>
-            <div class="mt-12 flex flex-wrap justify-center gap-3">
-                <span class="px-4 py-2 border border-black/20 rounded-full text-xs font-bold uppercase tracking-wider">OSPF & BGP</span>
-                <span class="px-4 py-2 border border-black/20 rounded-full text-xs font-bold uppercase tracking-wider">VLANs</span>
-                <span class="px-4 py-2 border border-black/20 rounded-full text-xs font-bold uppercase tracking-wider">Cloud Arch</span>
+            <div class="mt-8 md:mt-12 flex flex-wrap justify-center gap-2 md:gap-3">
+                <span class="px-4 py-2 border border-black/20 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">OSPF & BGP</span>
+                <span class="px-4 py-2 border border-black/20 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">VLANs</span>
+                <span class="px-4 py-2 border border-black/20 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">Cloud Arch</span>
             </div>
         </section>
 
         <!-- Portfolio Section -->
         <section id="portfolio" class="border-b border-grid reveal">
-            <div class="px-6 md:px-12 py-16 md:py-24 border-b border-grid flex flex-col md:flex-row justify-between md:items-end gap-6">
-                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">Selected<br>Projects</h2>
-                <p class="text-gray-400 max-w-sm">A curation of network designs, technical research, and leadership initiatives.</p>
+            <div class="px-5 md:px-12 py-12 md:py-24 border-b border-grid flex flex-col md:flex-row justify-between md:items-end gap-4 md:gap-6">
+                <h2 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none">Selected<br>Projects</h2>
+                <p class="text-gray-400 max-w-sm text-sm md:text-base">A curation of network designs, technical research, and leadership initiatives.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
                 
                 <!-- Project 1 (Enterprise Sec) -->
-                <div class="border-b md:border-r border-grid group hover:bg-surface transition-colors duration-500">
-                    <div class="h-64 border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" alt="Enterprise Security Hardware" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                <div class="border-b lg:border-b-0 lg:border-r border-grid group hover:bg-surface transition-colors duration-500">
+                    <div class="h-48 md:h-64 lg:h-72 border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Enterprise Security Hardware" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                     </div>
-                    <div class="p-8 md:p-12 relative">
-                        <div class="flex justify-between items-start mb-12">
-                            <h3 class="font-display text-3xl font-bold uppercase">Enterprise Sec</h3>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    <div class="p-6 md:p-10 lg:p-12 relative">
+                        <div class="flex justify-between items-start mb-8 md:mb-12">
+                            <h3 class="font-display text-2xl md:text-3xl font-bold uppercase pr-4">Enterprise Sec</h3>
+                            <i class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 lg:group-hover:opacity-100 transition-all transform lg:group-hover:translate-x-1 lg:group-hover:-translate-y-1"></i>
                         </div>
                         <p class="text-gray-400 text-sm mb-6">Designed an enterprise network simulation and high-level security architecture utilizing Cisco hardware.</p>
-                        <div class="flex gap-2">
+                        <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 border border-grid rounded-full text-[10px] uppercase font-bold text-gray-400">Cisco IOS</span>
                             <span class="px-3 py-1 border border-grid rounded-full text-[10px] uppercase font-bold text-gray-400">Inter-VLAN</span>
                         </div>
@@ -294,16 +294,16 @@
 
                 <!-- Project 2 (Intl Workshop) -->
                 <div class="border-b border-grid group hover:bg-surface transition-colors duration-500">
-                    <div class="h-64 border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
-                        <img src="tutor.jpg" alt="International Workshop Presentation" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="h-48 md:h-64 lg:h-72 border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
+                        <img src="tutor.jpg" loading="lazy" alt="International Workshop Presentation" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                     </div>
-                    <div class="p-8 md:p-12 relative">
-                        <div class="flex justify-between items-start mb-12">
-                            <h3 class="font-display text-3xl font-bold uppercase">Intl. Workshop</h3>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    <div class="p-6 md:p-10 lg:p-12 relative">
+                        <div class="flex justify-between items-start mb-8 md:mb-12">
+                            <h3 class="font-display text-2xl md:text-3xl font-bold uppercase pr-4">Intl. Workshop</h3>
+                            <i class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 lg:group-hover:opacity-100 transition-all transform lg:group-hover:translate-x-1 lg:group-hover:-translate-y-1"></i>
                         </div>
                         <p class="text-gray-400 text-sm mb-6">Facilitated a hands-on technical lab in Malaysia demonstrating fundamental MikroTik configurations.</p>
-                        <div class="flex gap-2">
+                        <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 border border-grid rounded-full text-[10px] uppercase font-bold text-gray-400">RouterOS</span>
                             <span class="px-3 py-1 border border-grid rounded-full text-[10px] uppercase font-bold text-gray-400">PnetLab</span>
                         </div>
@@ -318,31 +318,31 @@
             <div class="grid grid-cols-1 lg:grid-cols-12">
                 
                 <!-- Left Column: Photo & Brief Info -->
-                <div class="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-grid p-6 md:p-12 flex flex-col">
+                <div class="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-grid p-5 md:p-10 lg:p-12 flex flex-col">
                     
-                    <div class="w-full aspect-[3/4] bg-surface border border-grid overflow-hidden mb-8 relative group">
-                        <img src="IMG_2038.jpg" alt="Affan Profile" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute inset-0 border border-white/10 m-4 pointer-events-none"></div>
+                    <div class="w-full max-w-sm mx-auto lg:max-w-none aspect-square md:aspect-[4/5] lg:aspect-[3/4] bg-surface border border-grid overflow-hidden mb-8 relative group">
+                        <img src="IMG_2038.jpg" loading="lazy" alt="Affan Profile" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 border border-white/10 m-3 md:m-4 pointer-events-none"></div>
                     </div>
                     
-                    <div class="mt-auto">
-                        <h3 class="font-display text-2xl md:text-3xl font-bold uppercase mb-2">Pratyadiraksana<br>Affan Suluh Nagara.</h3>
-                        <p class="text-gray-400 text-sm uppercase tracking-widest mb-8">Network Engineer</p>
+                    <div class="mt-auto max-w-sm mx-auto lg:max-w-none w-full">
+                        <h3 class="font-display text-xl md:text-2xl lg:text-3xl font-bold uppercase mb-2">Pratyadiraksana<br>Affan Suluh Nagara.</h3>
+                        <p class="text-gray-400 text-xs md:text-sm uppercase tracking-widest mb-6 md:mb-8">Network Engineer</p>
                         
-                        <div class="flex flex-col gap-3 text-xs font-mono text-gray-500 uppercase tracking-wider">
+                        <div class="flex flex-col gap-3 text-[10px] md:text-xs font-mono text-gray-500 uppercase tracking-wider">
                             <div class="flex justify-between border-b border-grid pb-3">
                                 <span>Location</span>
-                                <span class="text-white">Semarang, Indonesia</span>
+                                <span class="text-white text-right">Semarang, ID</span>
                             </div>
                             <div class="flex justify-between border-b border-grid pb-3">
                                 <span>Education</span>
-                                <span class="text-white">IDN Boarding School</span>
+                                <span class="text-white text-right">IDN Boarding School</span>
                             </div>
                             <div class="flex justify-between pb-2">
                                 <span>Status</span>
                                 <span class="text-white flex items-center gap-2">
                                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    Available for Work
+                                    Available
                                 </span>
                             </div>
                         </div>
@@ -350,39 +350,40 @@
                 </div>
 
                 <!-- Right Column: Biography & Skills -->
-                <div class="lg:col-span-7 p-6 md:p-12 md:py-16 flex flex-col justify-between">
+                <div class="lg:col-span-7 p-5 md:p-10 lg:p-12 lg:py-16 flex flex-col justify-between">
                     <div>
-                        <h2 class="font-display text-6xl md:text-8xl lg:text-[7rem] font-black uppercase tracking-tighter mb-10 leading-[0.85]">
+                        <!-- Fluid typography for "About Me" -->
+                        <h2 class="font-display text-[clamp(4rem,10vw,7rem)] font-black uppercase tracking-tighter mb-8 md:mb-10 leading-[0.85]">
                             <span class="text-transparent stroke-text" style="-webkit-text-stroke: 1px rgba(255,255,255,0.8);">About</span><br>
                             <span class="text-white">Me.</span>
                         </h2>
                         
                         <div class="prose prose-invert max-w-none">
-                            <p class="text-xl md:text-3xl text-gray-200 font-light leading-snug mb-8">
+                            <p class="text-lg md:text-2xl lg:text-3xl text-gray-200 font-light leading-snug mb-6 md:mb-8">
                                 A young Network Engineer focused on scalable infrastructure and network security. Top 2 student specializing in Cisco, MikroTik, and AWS Architecture.
                             </p>
-                            <p class="text-base text-gray-500 leading-relaxed mb-12 max-w-2xl">
+                            <p class="text-sm md:text-base text-gray-500 leading-relaxed mb-10 md:mb-12 max-w-2xl">
                                 Outside the network terminal, I focus on preparing for my <em>TAFE to University</em> studies in Australia, honing sharp public speaking skills for managerial presentations, and prioritizing professional <em>grooming</em> routines to support my performance in the global tech industry.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mt-6 md:mt-8">
                         <div>
-                            <h4 class="font-display text-sm font-bold uppercase tracking-widest mb-6 text-white border-b border-grid pb-4">Core Focus</h4>
-                            <ul class="flex flex-col gap-4 text-sm text-gray-400 font-medium">
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Enterprise Routing (OSPF/BGP)</li>
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Cloud Infrastructure (AWS)</li>
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Server Administration (Linux)</li>
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Network Security</li>
+                            <h4 class="font-display text-xs md:text-sm font-bold uppercase tracking-widest mb-4 md:mb-6 text-white border-b border-grid pb-3 md:pb-4">Core Focus</h4>
+                            <ul class="flex flex-col gap-3 md:gap-4 text-xs md:text-sm text-gray-400 font-medium">
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Enterprise Routing (OSPF/BGP)</li>
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Cloud Infrastructure (AWS)</li>
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Server Administration (Linux)</li>
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Network Security</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-display text-sm font-bold uppercase tracking-widest mb-6 text-white border-b border-grid pb-4">Soft Skills</h4>
-                            <ul class="flex flex-col gap-4 text-sm text-gray-400 font-medium">
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Public Speaking</li>
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Technical Tutoring</li>
-                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full"></span> Leadership & Research</li>
+                            <h4 class="font-display text-xs md:text-sm font-bold uppercase tracking-widest mb-4 md:mb-6 text-white border-b border-grid pb-3 md:pb-4">Soft Skills</h4>
+                            <ul class="flex flex-col gap-3 md:gap-4 text-xs md:text-sm text-gray-400 font-medium">
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Public Speaking</li>
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Technical Tutoring</li>
+                                <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Leadership & Research</li>
                             </ul>
                         </div>
                     </div>
@@ -393,23 +394,23 @@
 
         <!-- Footer / Contact -->
         <footer id="contact" class="flex flex-col reveal">
-            <a href="mailto:suluhnagara2@gmail.com" class="py-24 md:py-36 px-6 md:px-12 text-center group bg-bg hover:bg-white transition-colors duration-700 block relative overflow-hidden">
-                <p class="text-xs uppercase tracking-[0.3em] text-gray-500 group-hover:text-black mb-6 transition-colors relative z-10">Got an opportunity?</p>
-                <h2 class="font-display text-[12vw] md:text-[10vw] font-black uppercase leading-none tracking-tighter text-gray-200 group-hover:text-black transition-colors duration-700 relative z-10">
+            <a href="mailto:suluhnagara2@gmail.com" class="py-20 md:py-36 px-5 md:px-12 text-center group bg-bg hover:bg-white transition-colors duration-700 block relative overflow-hidden">
+                <p class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-gray-500 group-hover:text-black mb-4 md:mb-6 transition-colors relative z-10">Got an opportunity?</p>
+                <h2 class="font-display text-[clamp(3rem,12vw,10vw)] font-black uppercase leading-none tracking-tighter text-gray-200 group-hover:text-black transition-colors duration-700 relative z-10 break-words">
                     Let's Talk
                 </h2>
             </a>
             
-            <div class="border-t border-grid flex flex-col md:flex-row justify-between items-center px-6 md:px-12 py-10 bg-[#050505] gap-8">
+            <div class="border-t border-grid flex flex-col md:flex-row justify-between items-center px-5 md:px-12 py-8 md:py-10 bg-[#050505] gap-6 md:gap-8">
                 <div class="text-center md:text-left">
-                    <p class="text-white font-bold uppercase tracking-wider text-sm mb-1">Pratyadiraksana Affan S.N.</p>
-                    <p class="text-gray-600 text-xs uppercase tracking-widest">Network Engineer</p>
+                    <p class="text-white font-bold uppercase tracking-wider text-xs md:text-sm mb-1">Pratyadiraksana Affan S.N.</p>
+                    <p class="text-gray-600 text-[10px] md:text-xs uppercase tracking-widest">Network Engineer</p>
                 </div>
                 
-                <div class="flex gap-8">
-                    <a href="https://wa.me/6282328529565" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">WhatsApp</a>
-                    <a href="https://github.com/Pans-89" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">GitHub</a>
-                    <a href="http://www.linkedin.com/in/affan-suluh-006494333" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">LinkedIn</a>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+                    <a href="https://wa.me/6282328529565" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] md:text-xs font-bold tracking-widest p-2 md:p-0">WhatsApp</a>
+                    <a href="https://github.com/Pans-89" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] md:text-xs font-bold tracking-widest p-2 md:p-0">GitHub</a>
+                    <a href="http://www.linkedin.com/in/affan-suluh-006494333" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] md:text-xs font-bold tracking-widest p-2 md:p-0">LinkedIn</a>
                 </div>
             </div>
         </footer>
@@ -417,8 +418,8 @@
     </main>
 
     <!-- Minimalist Back To Top -->
-    <a href="#" id="backToTop" class="fixed bottom-8 right-8 border border-white/20 bg-bg text-white hover:bg-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center z-50 transition-all opacity-0 pointer-events-none translate-y-4">
-        <i class="fa-solid fa-arrow-up"></i>
+    <a href="#" id="backToTop" aria-label="Back to top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 border border-white/20 bg-bg text-white hover:bg-white hover:text-black w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-50 transition-all opacity-0 pointer-events-none translate-y-4">
+        <i class="fa-solid fa-arrow-up text-sm md:text-base"></i>
     </a>
 
     <script>
@@ -462,7 +463,8 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        // Trigger once on load
+        setTimeout(reveal, 100);
 
         // --- Minimalist Back To Top Button ---
         const backToTopBtn = document.getElementById("backToTop");
