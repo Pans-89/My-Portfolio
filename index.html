@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -7,9 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -44,6 +47,7 @@
 
     <style>
         html {
+            /* Ensures anchors don't hide behind the fixed navbar */
             scroll-padding-top: 100px;
         }
 
@@ -56,10 +60,22 @@
         }
 
         /* --- Minimalist Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #444; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
 
         /* --- Refined Reveal Animations --- */
         .reveal {
@@ -68,271 +84,629 @@
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .border-grid { border-color: rgba(255, 255, 255, 0.12); }
-        
-        /* FIX: Menggunakan unit vw agar teks tidak overflow ke samping */
-        .text-fluid-hero { font-size: clamp(2.8rem, 9.5vw, 9.5rem); } 
-        .text-fluid-section { font-size: clamp(2.5rem, 6vw, 5rem); }
-        .text-fluid-about { font-size: clamp(3rem, 7vw, 7rem); }
-        .text-fluid-footer { font-size: clamp(3.5rem, 10vw, 12rem); }
+        /* Utility classes for sharp borders */
+        .border-grid {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
 
-        .stroke-text {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+        /* Fluid typography classes for smooth scaling without breaking boundaries */
+        /* Minimums tuned for 320px viewport — no horizontal scrollbar */
+        .text-fluid-hero {
+            font-size: clamp(2.5rem, 10vw, 8rem);
+            line-height: 0.95;
+            text-wrap: balance;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .text-fluid-section {
+            font-size: clamp(1.75rem, 5vw, 5rem);
+        }
+
+        .text-fluid-about {
+            font-size: clamp(2rem, 6vw, 7rem);
+        }
+
+        .text-fluid-footer {
+            font-size: clamp(2rem, 9vw, 12rem);
         }
     </style>
 </head>
+
 <body class="selection:bg-white selection:text-black antialiased relative">
 
-    <nav class="fixed top-0 w-full bg-bg/90 backdrop-blur-xl border-b border-grid z-[60] transition-all duration-300" id="navbar">
-        <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-12 py-5 sm:py-6 lg:py-8 flex justify-between items-center">
-            
-            <div class="cursor-pointer relative z-[70] flex items-center p-1" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <svg viewBox="0 0 100 100" class="h-9 sm:h-10 lg:h-11 w-auto animate-logo-float hover:scale-110 transition-transform duration-300 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <!-- Navigation -->
+    <!-- FIX: Ditambahkan pt-safe dan padding yang lebih bernapas agar tidak terlalu menempel ke layar HP -->
+    <nav class="fixed top-0 w-full bg-bg/90 backdrop-blur-xl border-b border-grid z-[60] transition-all duration-300"
+        id="navbar">
+        <div
+            class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-12 py-5 sm:py-6 lg:py-8 flex justify-between items-center">
+
+            <!-- LOGO SECTION -->
+            <div class="cursor-pointer relative z-[70] flex items-center p-1"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <svg viewBox="0 0 100 100"
+                    class="h-9 sm:h-10 lg:h-11 w-auto animate-logo-float hover:scale-110 transition-transform duration-300 text-white"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="50,10 37,40 63,40" />
                     <polygon points="33,50 15,90 35,90 42,75" />
                     <polygon points="67,50 58,75 65,90 85,90" />
                     <rect x="45" y="55" width="10" height="10" />
-                </svg> 
+                </svg>
             </div>
 
-            <div class="hidden lg:flex items-center space-x-10 xl:space-x-14 text-xs xl:text-sm font-medium text-gray-400 uppercase tracking-[0.2em]">
+            <!-- Desktop Menu -->
+            <div
+                class="hidden lg:flex items-center space-x-10 xl:space-x-14 text-xs xl:text-sm font-medium text-gray-400 uppercase tracking-[0.2em]">
                 <a href="#credentials" class="hover:text-white transition-colors py-2">Credentials</a>
                 <a href="#experience" class="hover:text-white transition-colors py-2">Experience</a>
                 <a href="#portfolio" class="hover:text-white transition-colors py-2">Work</a>
                 <a href="#about" class="hover:text-white transition-colors py-2">About</a>
             </div>
 
-            <a href="#contact" class="hidden lg:inline-block border border-white/30 hover:bg-white hover:text-black px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95">
+            <a href="#contact"
+                class="hidden lg:inline-block border border-white/30 hover:bg-white hover:text-black px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95">
                 Let's Talk
             </a>
-            
-            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white cursor-pointer relative z-[70] p-3 -mr-2 transition-transform duration-300 focus:outline-none" aria-label="Toggle Menu">
+
+            <!-- Mobile Menu Hamburger Button -->
+            <!-- FIX: Padding area tekan diperbesar untuk touch accessibility -->
+            <button id="mobile-menu-btn"
+                class="lg:hidden text-2xl text-white cursor-pointer relative z-[70] p-3 -mr-2 transition-transform duration-300 focus:outline-none"
+                aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-bg/95 backdrop-blur-lg z-[50] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
-        <a href="#credentials" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Credentials</a>
-        <a href="#experience" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Experience</a>
-        <a href="#portfolio" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Work</a>
-        <a href="#about" class="mobile-link font-display text-3xl sm:text-4xl uppercase font-bold tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">About</a>
-        <a href="#contact" class="mobile-link mt-8 border border-white px-10 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors transform translate-y-4">Let's Talk</a>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-bg/95 backdrop-blur-lg z-[50] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
+        <a href="#credentials"
+            class="mobile-link font-display text-2xl sm:text-4xl uppercase font-bold tracking-wider sm:tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Credentials</a>
+        <a href="#experience"
+            class="mobile-link font-display text-2xl sm:text-4xl uppercase font-bold tracking-wider sm:tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Experience</a>
+        <a href="#portfolio"
+            class="mobile-link font-display text-2xl sm:text-4xl uppercase font-bold tracking-wider sm:tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">Work</a>
+        <a href="#about"
+            class="mobile-link font-display text-2xl sm:text-4xl uppercase font-bold tracking-wider sm:tracking-widest text-gray-400 hover:text-white transition-colors transform translate-y-4">About</a>
+        <a href="#contact"
+            class="mobile-link mt-8 border border-white px-8 sm:px-10 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors transform translate-y-4">Let's
+            Talk</a>
     </div>
 
     <main class="max-w-[1400px] mx-auto w-full border-x border-grid min-h-screen">
 
-        <header class="pt-28 sm:pt-36 md:pt-28 lg:pt-56 pb-16 sm:pb-20 md:pb-16 lg:pb-24 px-6 sm:px-10 lg:px-12 border-b border-grid flex flex-col justify-end min-h-[75vh] md:min-h-[50vh] lg:min-h-[90vh]">
-            <p class="text-gray-400 font-medium mb-4 sm:mb-6 uppercase tracking-[0.2em] text-xs sm:text-sm reveal">Let's become partners</p>
-            
-            <h1 class="font-display text-fluid-hero leading-[1.05] md:leading-[0.9] font-extrabold uppercase tracking-tighter reveal delay-100 break-words w-full">
-                Network<br>
-                <span class="text-zinc-400">Engineer</span>
+        <!-- Header / Hero Section -->
+        <header
+            class="pt-40 sm:pt-48 lg:pt-56 pb-20 sm:pb-24 px-6 sm:px-10 lg:px-12 border-b border-grid flex flex-col justify-end min-h-[85vh] lg:min-h-[90vh]">
+            <p class="text-gray-400 font-medium mb-4 sm:mb-6 uppercase tracking-[0.2em] text-xs sm:text-sm reveal">Let's
+                become partners</p>
+
+            <!-- FIX: Uses fluid clamp() via .text-fluid-hero for seamless scaling from 320px to 1400px -->
+            <h1
+                class="font-display text-fluid-hero font-extrabold uppercase tracking-tighter reveal delay-100">
+                Network<br class="hidden sm:block">
+                <span class="text-gray-300">Engineer</span>
             </h1>
-            
-            <div class="mt-10 sm:mt-16 md:mt-12 lg:mt-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 lg:gap-16 reveal delay-200">
-                <p class="max-w-xl text-gray-400 text-base sm:text-lg lg:text-xl font-light leading-relaxed mb-4 lg:mb-0">
-                    Student at IDN Boarding School. I specialize in Network Infrastructure and Cloud Architecture, aiming to partner on highly scalable projects.
+
+            <!-- FIX: Ditambahkan margin dan gap vertikal yang jauh lebih renggang (whitespace) -->
+            <div
+                class="mt-16 sm:mt-24 lg:mt-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-16 reveal delay-200">
+                <p
+                    class="max-w-xl text-gray-400 text-base sm:text-lg lg:text-xl font-light leading-relaxed mb-4 lg:mb-0">
+                    Student at IDN Boarding School. I specialize in Network Infrastructure and Cloud Architecture,
+                    aiming to partner on highly scalable projects.
                 </p>
                 <div class="flex flex-wrap sm:flex-nowrap gap-4 w-full lg:w-auto">
-                    <a href="#portfolio" class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 group shrink-0" aria-label="View Portfolio">
+                    <a href="#portfolio"
+                        class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 group shrink-0"
+                        aria-label="View Portfolio">
                         <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </a>
-                    <a href="CV_Affan.pdf" download="CV_Affan_Network_Engineer.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex justify-center items-center gap-3 border border-grid px-6 sm:px-8 py-4 rounded-full hover:border-white transition-all duration-300 uppercase tracking-[0.15em] text-xs sm:text-sm font-bold hover:scale-105">
+                    <a href="CV_Affan.pdf" download="CV_Affan_Network_Engineer.pdf" target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex-1 sm:flex-none inline-flex justify-center items-center gap-3 border border-grid px-6 sm:px-8 py-4 rounded-full hover:border-white transition-all duration-300 uppercase tracking-[0.15em] text-xs sm:text-sm font-bold hover:scale-105">
                         Download CV
                     </a>
                 </div>
             </div>
         </header>
 
+        <!-- Tech Stack Marquee -->
+        <!-- FIX: Menambah padding py-4 pada item dan gap-16 sm:gap-24 agar tap target pada layar sentuh jauh lebih ramah dan lega -->
         <div class="relative flex overflow-x-hidden border-b border-grid bg-surface py-6 sm:py-8 reveal">
-            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 sm:gap-24 px-6 sm:px-10">
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors">AWS Cloud</span>
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">Linux</span>
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors">Cisco Systems</span>
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">MikroTik</span>
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors">Routing</span>
-                <span aria-hidden="true" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors">AWS Cloud</span>
-                <span aria-hidden="true" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">Linux</span>
-                <span aria-hidden="true" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors">Cisco Systems</span>
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-8 sm:gap-16 lg:gap-24 px-4 sm:px-8">
+                <!-- Group 1 -->
+                <span
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">AWS Cloud</span>
+                <span
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">Linux</span>
+                <span
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">Cisco Systems</span>
+                <span
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">MikroTik</span>
+                <span
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">Routing</span>
+                <!-- Group 2 (Aksesibilitas) -->
+                <span aria-hidden="true"
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">AWS Cloud</span>
+                <span aria-hidden="true"
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">Linux</span>
+                <span aria-hidden="true"
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">Cisco Systems</span>
+                <span aria-hidden="true"
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-white py-4 px-2 cursor-pointer hover:text-gray-300 transition-colors">MikroTik</span>
+                <span aria-hidden="true"
+                    class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold uppercase text-transparent stroke-text py-4 px-2 cursor-pointer hover:text-white transition-colors"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">Routing</span>
             </div>
         </div>
 
+        <!-- Credentials Section -->
+        <!-- FIX: Menghapus artefak "empty circle" dan menggantinya dengan panah interaktif yang rapi, serta memperbaiki spacing internal Card (p-10) -->
         <section id="credentials" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 border-b border-grid reveal">
-            <a href="https://bit.ly/CCNABADGE" target="_blank" rel="noopener noreferrer" class="flex flex-col p-8 sm:p-10 xl:p-14 border-b md:border-b-0 md:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
+            <a href="https://bit.ly/CCNABADGE" target="_blank" rel="noopener noreferrer"
+                class="flex flex-col p-6 sm:p-10 md:p-12 xl:p-14 border-b md:border-b-0 md:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
                 <div class="flex justify-between items-start mb-12 sm:mb-20">
-                    <i class="fa-solid fa-shield-halved text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    <i
+                        class="fa-solid fa-shield-halved text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
+                    <i
+                        class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
                 </div>
                 <div class="mt-auto">
-                    <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4 uppercase">CCNA</h3>
-                    <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">Cisco Networking Academy. Introduction to Networks, SRWE, and ENSA.</p>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase">CCNA</h3>
+                    <p
+                        class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">
+                        Cisco Networking Academy. Introduction to Networks, SRWE, and ENSA.</p>
                 </div>
             </a>
-            <a href="https://bit.ly/certificateMTCRE" target="_blank" rel="noopener noreferrer" class="flex flex-col p-8 sm:p-10 xl:p-14 border-b md:border-b-0 xl:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
+
+            <a href="https://bit.ly/certificateMTCRE" target="_blank" rel="noopener noreferrer"
+                class="flex flex-col p-6 sm:p-10 md:p-12 xl:p-14 border-b md:border-b-0 xl:border-r border-grid group hover:bg-white hover:text-black transition-all duration-500">
                 <div class="flex justify-between items-start mb-12 sm:mb-20">
-                    <i class="fa-solid fa-route text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    <i
+                        class="fa-solid fa-route text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
+                    <i
+                        class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
                 </div>
                 <div class="mt-auto">
-                    <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4 uppercase">MTCRE</h3>
-                    <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">MikroTik Certified Routing Engineer. Expert in advanced routing protocols.</p>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase">MTCRE</h3>
+                    <p
+                        class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">
+                        MikroTik Certified Routing Engineer. Expert in advanced routing protocols.</p>
                 </div>
             </a>
-            <a href="https://bit.ly/MTCNAcertificate" target="_blank" rel="noopener noreferrer" class="flex flex-col p-8 sm:p-10 xl:p-14 border-t md:border-t-0 md:col-span-2 xl:col-span-1 group hover:bg-white hover:text-black transition-all duration-500">
+
+            <a href="https://bit.ly/MTCNAcertificate" target="_blank" rel="noopener noreferrer"
+                class="flex flex-col p-6 sm:p-10 md:p-12 xl:p-14 border-t md:border-t-0 md:col-span-2 xl:col-span-1 group hover:bg-white hover:text-black transition-all duration-500">
                 <div class="flex justify-between items-start mb-12 sm:mb-20">
-                    <i class="fa-solid fa-server text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    <i
+                        class="fa-solid fa-server text-4xl sm:text-5xl text-gray-600 group-hover:text-black transition-colors"></i>
+                    <i
+                        class="fa-solid fa-arrow-up-right-from-square text-lg sm:text-xl text-gray-500 opacity-50 group-hover:opacity-100 group-hover:text-black transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
                 </div>
                 <div class="mt-auto">
-                    <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4 uppercase">MTCNA</h3>
-                    <p class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">MikroTik Certified Network Associate. Foundation of network management.</p>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase">MTCNA</h3>
+                    <p
+                        class="text-gray-400 group-hover:text-gray-800 transition-colors text-sm sm:text-base leading-relaxed">
+                        MikroTik Certified Network Associate. Foundation of network management.</p>
                 </div>
             </a>
         </section>
 
+        <!-- Experience Section -->
         <section id="experience" class="border-b border-grid reveal">
             <div class="px-6 sm:px-10 lg:px-12 py-16 sm:py-20 lg:py-24 border-b border-grid">
                 <h2 class="font-display text-fluid-section font-bold uppercase tracking-tight">Experience</h2>
             </div>
+
             <div class="flex flex-col">
+                <!-- Exp 1 -->
                 <div class="flex flex-col lg:flex-row border-b border-grid hover:bg-surface transition-colors">
-                    <div class="w-full lg:w-1/4 p-6 sm:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center">Jul 2024 — Jun 2027</div>
-                    <div class="w-full lg:w-3/4 p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-6 lg:gap-10">
+                    <div
+                        class="w-full lg:w-1/4 p-6 sm:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center">
+                        Jul 2024 — Jun 2027
+                    </div>
+                    <div
+                        class="w-full lg:w-3/4 p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-6 lg:gap-10">
                         <div class="w-full md:w-1/2">
-                            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-2 uppercase">Network Admin System</h3>
+                            <h3 class="font-display text-xl sm:text-2xl md:text-3xl font-bold mb-2 uppercase">Network Admin System
+                            </h3>
                             <p class="text-gray-500 font-medium text-sm sm:text-base">IDN Boarding School</p>
                         </div>
-                        <p class="w-full md:w-1/2 text-sm text-gray-400 leading-relaxed">Top 2 student in class. Focusing on Network Infrastructure, System Administration, and Cloud Architecture.</p>
+                        <p class="w-full md:w-1/2 text-sm text-gray-400 leading-relaxed">
+                            Top 2 student in class. Focusing on Network Infrastructure, System Administration, Cloud
+                            Architecture, and hands-on Cisco hardware integration.
+                        </p>
                     </div>
                 </div>
+
+                <!-- Exp 2 -->
                 <div class="flex flex-col lg:flex-row border-b border-grid hover:bg-surface transition-colors">
-                    <div class="w-full lg:w-1/4 p-6 sm:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center">Oct 2025</div>
-                    <div class="w-full lg:w-3/4 p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-6 lg:gap-10">
+                    <div
+                        class="w-full lg:w-1/4 p-6 sm:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center">
+                        Oct 2025
+                    </div>
+                    <div
+                        class="w-full lg:w-3/4 p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-6 lg:gap-10">
                         <div class="w-full md:w-1/2">
-                            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-2 uppercase">Researcher & Class Rep</h3>
+                            <h3 class="font-display text-xl sm:text-2xl md:text-3xl font-bold mb-2 uppercase">Researcher & Class
+                                Rep</h3>
                             <p class="text-gray-500 font-medium text-sm sm:text-base">RingNet, Yogyakarta</p>
                         </div>
-                        <p class="w-full md:w-1/2 text-sm text-gray-400 leading-relaxed">Selected to conduct technical observation on industry-standard network monitoring and infrastructure scaling.</p>
+                        <p class="w-full md:w-1/2 text-sm text-gray-400 leading-relaxed">
+                            Selected as the primary school representative to conduct technical observation on
+                            industry-standard network monitoring and infrastructure scaling.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Exp 3 -->
+                <div class="flex flex-col lg:flex-row hover:bg-surface transition-colors">
+                    <div
+                        class="w-full lg:w-1/4 p-6 sm:p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-grid text-gray-400 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center">
+                        Sep 2024
+                    </div>
+                    <div
+                        class="w-full lg:w-3/4 p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row justify-between items-start gap-6 lg:gap-10">
+                        <div class="w-full md:w-1/2">
+                            <h3 class="font-display text-xl sm:text-2xl md:text-3xl font-bold mb-2 uppercase">Peer Technical Tutor
+                            </h3>
+                            <p class="text-gray-500 font-medium text-sm sm:text-base">Kolej Vokasional Sg. Buloh, MY</p>
+                        </div>
+                        <p class="w-full md:w-1/2 text-sm text-gray-400 leading-relaxed">
+                            Delivered international workshops on Network Fundamentals and MikroTik RouterOS
+                            configuration using PnetLab for vocational students.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="border-b border-grid bg-white text-black py-16 sm:py-24 lg:py-32 px-6 sm:px-10 lg:px-12 text-center reveal">
-            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-8 sm:mb-12">Why Hire Me?</h2>
-            <p class="max-w-5xl mx-auto text-lg sm:text-2xl lg:text-4xl font-medium leading-normal sm:leading-snug text-gray-900">
-                International teaching experience at age 16, combined with in-depth technical skills in Cisco, MikroTik, and AWS. I design enterprise networks with high security standards.
+        <!-- Value Proposition -->
+        <!-- FIX: Tap Target buttons di-padding lebih besar -->
+        <section
+            class="border-b border-grid bg-white text-black py-16 sm:py-24 lg:py-32 px-6 sm:px-10 lg:px-12 text-center reveal">
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-8 sm:mb-12">
+                Why Hire Me?</h2>
+            <p
+                class="max-w-5xl mx-auto text-lg sm:text-2xl lg:text-4xl font-medium leading-normal sm:leading-snug text-gray-900">
+                International teaching experience at age 16, combined with in-depth technical skills in Cisco, MikroTik,
+                and AWS. I design enterprise networks with high security standards and a focus on <span
+                    class="border-b-2 border-black pb-1">company value</span>.
             </p>
             <div class="mt-12 sm:mt-16 flex flex-wrap justify-center gap-3 sm:gap-4">
-                <span class="px-6 py-3 border border-black/20 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">OSPF & BGP</span>
-                <span class="px-6 py-3 border border-black/20 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">Cloud Arch</span>
+                <span
+                    class="px-6 py-3 border border-black/20 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">OSPF
+                    & BGP</span>
+                <span
+                    class="px-6 py-3 border border-black/20 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">VLANs</span>
+                <span
+                    class="px-6 py-3 border border-black/20 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">Cloud
+                    Arch</span>
             </div>
         </section>
 
+        <!-- Portfolio Section -->
         <section id="portfolio" class="border-b border-grid reveal">
-            <div class="px-6 sm:px-10 lg:px-12 py-16 sm:py-20 lg:py-24 border-b border-grid flex flex-col md:flex-row justify-between md:items-end gap-6 sm:gap-8">
-                <h2 class="font-display text-fluid-section font-bold uppercase tracking-tight leading-[0.9]">Selected<br>Projects</h2>
-                <p class="text-gray-400 max-w-sm text-sm sm:text-base">A curation of network designs, technical research, and leadership initiatives.</p>
+            <div
+                class="px-6 sm:px-10 lg:px-12 py-16 sm:py-20 lg:py-24 border-b border-grid flex flex-col md:flex-row justify-between md:items-end gap-6 sm:gap-8">
+                <h2 class="font-display text-fluid-section font-bold uppercase tracking-tight leading-[0.9]">
+                    Selected<br>Projects</h2>
+                <p class="text-gray-400 max-w-sm text-sm sm:text-base">A curation of network designs, technical
+                    research, and leadership initiatives.</p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="border-b md:border-b-0 md:border-r border-grid group hover:bg-surface transition-colors duration-500 cursor-pointer">
-                    <div class="h-[40vh] sm:h-[350px] lg:h-[450px] border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" alt="Project" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+
+                <!-- Project 1 (Enterprise Sec) -->
+                <div
+                    class="border-b md:border-b-0 md:border-r border-grid group hover:bg-surface transition-colors duration-500 cursor-pointer">
+                    <div
+                        class="h-[250px] sm:h-[350px] lg:h-[450px] border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
+                            alt="Enterprise Security Hardware"
+                            class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                     </div>
-                    <div class="p-8 sm:p-10 lg:p-12">
-                        <h3 class="font-display text-2xl sm:text-3xl font-bold uppercase mb-4">Enterprise Sec</h3>
-                        <p class="text-gray-400 text-sm">Designed an enterprise network simulation utilizing Cisco hardware.</p>
+                    <div class="p-8 sm:p-10 lg:p-12 relative flex flex-col h-auto sm:h-64 justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6 sm:mb-8">
+                                <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase">Enterprise
+                                    Sec</h3>
+                                <i
+                                    class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-8">Designed an enterprise network simulation and
+                                high-level security architecture utilizing Cisco hardware.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-4 py-2 border border-grid rounded-full text-[10px] sm:text-xs uppercase font-bold text-gray-400">Cisco
+                                IOS</span>
+                            <span
+                                class="px-4 py-2 border border-grid rounded-full text-[10px] sm:text-xs uppercase font-bold text-gray-400">Inter-VLAN</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Project 2 (Intl Workshop) -->
                 <div class="group hover:bg-surface transition-colors duration-500 cursor-pointer">
-                    <div class="h-[40vh] sm:h-[350px] lg:h-[450px] border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Workshop" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div
+                        class="h-[250px] sm:h-[350px] lg:h-[450px] border-b border-grid overflow-hidden relative bg-[#0a0a0a]">
+                        <img src="tutor.jpg" alt="International Workshop Presentation"
+                            class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                            onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop'">
                     </div>
-                    <div class="p-8 sm:p-10 lg:p-12">
-                        <h3 class="font-display text-2xl sm:text-3xl font-bold uppercase mb-4">Intl. Workshop</h3>
-                        <p class="text-gray-400 text-sm">Facilitated a hands-on technical lab in Malaysia for MikroTik configuration.</p>
+                    <div class="p-8 sm:p-10 lg:p-12 relative flex flex-col h-auto sm:h-64 justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6 sm:mb-8">
+                                <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase">Intl.
+                                    Workshop</h3>
+                                <i
+                                    class="fa-solid fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-8">Facilitated a hands-on technical lab in Malaysia
+                                demonstrating fundamental MikroTik configurations.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-4 py-2 border border-grid rounded-full text-[10px] sm:text-xs uppercase font-bold text-gray-400">RouterOS</span>
+                            <span
+                                class="px-4 py-2 border border-grid rounded-full text-[10px] sm:text-xs uppercase font-bold text-gray-400">PnetLab</span>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
+        <!-- Editorial About Section -->
         <section id="about" class="border-b border-grid reveal">
             <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-grid p-6 sm:p-10 lg:p-12 flex flex-col sm:flex-row lg:flex-col gap-8 lg:gap-0">
-                    <div class="w-full sm:w-1/2 lg:w-full aspect-[3/4] bg-surface border border-grid overflow-hidden relative group">
-                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700">
+
+                <!-- Left Column: Photo & Brief Info -->
+                <div
+                    class="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-grid p-6 sm:p-10 lg:p-12 flex flex-col sm:flex-row lg:flex-col gap-8 lg:gap-0">
+
+                    <div
+                        class="w-full sm:w-1/2 lg:w-full aspect-[3/4] bg-surface border border-grid overflow-hidden lg:mb-10 relative group shrink-0">
+                        <img src="IMG_2038.jpg" alt="Affan Profile"
+                            class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                            onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop'">
+                        <div class="absolute inset-0 border border-white/10 m-3 sm:m-4 pointer-events-none"></div>
                     </div>
-                    <div class="mt-auto w-full sm:w-1/2 lg:w-full">
-                        <h3 class="font-display text-xl sm:text-2xl lg:text-3xl font-bold uppercase">Affan Suluh Nagara</h3>
-                        <p class="text-gray-400 text-xs uppercase tracking-widest">Network Engineer</p>
+
+                    <div class="mt-auto w-full sm:w-1/2 lg:w-full flex flex-col justify-end">
+                        <h3 class="font-display text-xl sm:text-2xl lg:text-3xl font-bold uppercase mb-2">
+                            Pratyadiraksana<br>Affan Suluh Nagara.</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm uppercase tracking-widest mb-6 lg:mb-8">Network
+                            Engineer</p>
+
+                        <div
+                            class="flex flex-col gap-4 text-[11px] sm:text-xs font-mono text-gray-500 uppercase tracking-wider">
+                            <div class="flex justify-between border-b border-grid pb-3">
+                                <span>Location</span>
+                                <span class="text-white text-right">Semarang, Indonesia</span>
+                            </div>
+                            <div class="flex justify-between border-b border-grid pb-3">
+                                <span>Education</span>
+                                <span class="text-white text-right">IDN Boarding School</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span>Status</span>
+                                <span class="text-white flex items-center gap-2 text-right">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                    Available
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:col-span-7 p-6 sm:p-10 lg:p-16">
-                    <h2 class="font-display text-fluid-about font-black uppercase tracking-tighter mb-8 leading-[0.85]">About <span class="text-white">Me.</span></h2>
-                    <p class="text-lg sm:text-xl lg:text-3xl text-gray-200 font-light leading-snug mb-6">A young Network Engineer focused on scalable infrastructure and network security.</p>
+
+                <!-- Right Column: Biography & Skills -->
+                <div class="lg:col-span-7 p-6 sm:p-10 lg:p-16 flex flex-col justify-between">
+                    <div>
+                        <h2
+                            class="font-display text-fluid-about font-black uppercase tracking-tighter mb-8 sm:mb-12 leading-[0.85]">
+                            <span class="text-transparent stroke-text"
+                                style="-webkit-text-stroke: 1px rgba(255,255,255,0.8);">About</span><br>
+                            <span class="text-white">Me.</span>
+                        </h2>
+
+                        <div class="prose prose-invert max-w-none">
+                            <p
+                                class="text-lg sm:text-xl lg:text-3xl text-gray-200 font-light leading-snug mb-6 sm:mb-8">
+                                A young Network Engineer focused on scalable infrastructure and network security. Top 2
+                                student specializing in Cisco, MikroTik, and AWS Architecture.
+                            </p>
+                            <p class="text-sm sm:text-base text-gray-500 leading-relaxed mb-10 sm:mb-14 max-w-2xl">
+                                Outside the network terminal, I focus on preparing for my <em>TAFE to University</em>
+                                studies in Australia, honing sharp public speaking skills for managerial presentations,
+                                and prioritizing professional <em>grooming</em> routines to support my performance in
+                                the global tech industry.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mt-4 lg:mt-8">
+                        <div>
+                            <h4
+                                class="font-display text-xs sm:text-sm font-bold uppercase tracking-widest mb-5 text-white border-b border-grid pb-3 sm:pb-4">
+                                Core Focus</h4>
+                            <ul class="flex flex-col gap-4 text-xs sm:text-sm text-gray-400 font-medium">
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Enterprise Routing
+                                    (OSPF/BGP)</li>
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Cloud Infrastructure
+                                    (AWS)</li>
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Server Administration
+                                    (Linux)</li>
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Network Security</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-display text-xs sm:text-sm font-bold uppercase tracking-widest mb-5 text-white border-b border-grid pb-3 sm:pb-4">
+                                Soft Skills</h4>
+                            <ul class="flex flex-col gap-4 text-xs sm:text-sm text-gray-400 font-medium">
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Public Speaking</li>
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Technical Tutoring
+                                </li>
+                                <li class="flex items-center gap-3"><span
+                                        class="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span> Leadership & Research
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
+        <!-- Footer / Contact -->
         <footer id="contact" class="flex flex-col reveal">
-            <a href="mailto:suluhnagara2@gmail.com" class="py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 text-center group bg-bg hover:bg-white transition-colors duration-700 block relative overflow-hidden">
-                <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 group-hover:text-black mb-4 transition-colors">Got an opportunity?</p>
-                <h2 class="font-display text-fluid-footer font-black uppercase leading-[0.85] tracking-tighter text-gray-200 group-hover:text-black transition-colors duration-700">Let's Talk</h2>
+            <a href="mailto:suluhnagara2@gmail.com"
+                class="py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 text-center group bg-bg hover:bg-white transition-colors duration-700 block relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white">
+                <p
+                    class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-gray-500 group-hover:text-black mb-4 sm:mb-6 transition-colors relative z-10">
+                    Got an opportunity?</p>
+                <h2
+                    class="font-display text-fluid-footer font-black uppercase leading-[0.85] tracking-tighter text-gray-200 group-hover:text-black transition-colors duration-700 relative z-10">
+                    Let's Talk
+                </h2>
             </a>
-            <div class="border-t border-grid flex flex-col md:flex-row justify-between items-center px-6 sm:px-10 lg:px-12 py-8 bg-[#050505] gap-6">
-                <p class="text-white font-bold uppercase tracking-wider text-xs sm:text-sm">Pratyadiraksana Affan S.N.</p>
-                <div class="flex gap-6 sm:gap-8">
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-widest">WhatsApp</a>
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-widest">LinkedIn</a>
+
+            <div
+                class="border-t border-grid flex flex-col md:flex-row justify-between items-center px-6 sm:px-10 lg:px-12 py-8 sm:py-10 bg-[#050505] gap-6 sm:gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-white font-bold uppercase tracking-wider text-xs sm:text-sm mb-1">Pratyadiraksana
+                        Affan S.N.</p>
+                    <p class="text-gray-600 text-[10px] sm:text-xs uppercase tracking-widest">Network Engineer</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                    <!-- FIX: Tap target links diperbesar p-3 -->
+                    <a href="https://wa.me/6282328529565" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] sm:text-xs font-bold tracking-widest p-3 -m-3">WhatsApp</a>
+                    <a href="https://github.com/Pans-89" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] sm:text-xs font-bold tracking-widest p-3 -m-3">GitHub</a>
+                    <a href="http://www.linkedin.com/in/affan-suluh-006494333" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-500 hover:text-white transition-colors uppercase text-[10px] sm:text-xs font-bold tracking-widest p-3 -m-3">LinkedIn</a>
                 </div>
             </div>
         </footer>
 
     </main>
 
-    <a href="#" id="backToTop" class="fixed bottom-6 right-6 border border-white/20 bg-bg/80 backdrop-blur-sm text-white w-12 h-12 rounded-full flex items-center justify-center z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"><i class="fa-solid fa-arrow-up"></i></a>
+    <!-- Minimalist Back To Top -->
+    <a href="#" id="backToTop" aria-label="Back to top"
+        class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 border border-white/20 bg-bg/80 backdrop-blur-sm text-white hover:bg-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 focus:outline-none focus:ring-2 focus:ring-white">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </a>
 
     <script>
-        // Mobile Menu
+        // --- Mobile Menu Logic ---
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
         let isMenuOpen = false;
 
-        mobileMenuBtn.addEventListener('click', () => {
+        function toggleMenu() {
             isMenuOpen = !isMenuOpen;
-            mobileMenu.classList.toggle('opacity-0', !isMenuOpen);
-            mobileMenu.classList.toggle('pointer-events-none', !isMenuOpen);
-            mobileMenuBtn.innerHTML = isMenuOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
-            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                document.body.style.overflow = 'hidden';
+
+                mobileLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('translate-y-4');
+                    }, 100 * (index + 1));
+                });
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                document.body.style.overflow = '';
+
+                mobileLinks.forEach(link => {
+                    link.classList.add('translate-y-4');
+                });
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
         });
 
-        // Reveal Animation
+        // --- Smooth Reveal Animation on Scroll ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) { reveals[i].classList.add("active"); }
+                var elementVisible = window.innerWidth < 768 ? 30 : 50;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
-        window.addEventListener("scroll", reveal);
+        window.addEventListener("scroll", reveal, { passive: true });
         setTimeout(reveal, 100);
 
-        // Back to top & Navbar scroll
+        // --- Minimalist Back To Top Button & Navbar logic ---
         const backToTopBtn = document.getElementById("backToTop");
+        const navbar = document.getElementById("navbar");
+        let lastScrollTop = 0;
+
         window.addEventListener("scroll", () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            backToTopBtn.style.opacity = scrollTop > 500 ? "1" : "0";
-            backToTopBtn.style.pointerEvents = scrollTop > 500 ? "auto" : "none";
-            backToTopBtn.style.transform = scrollTop > 500 ? "translateY(0)" : "translateY(1rem)";
+
+            if (scrollTop > 500) {
+                backToTopBtn.style.opacity = "1";
+                backToTopBtn.style.pointerEvents = "auto";
+                backToTopBtn.style.transform = "translateY(0)";
+            } else {
+                backToTopBtn.style.opacity = "0";
+                backToTopBtn.style.pointerEvents = "none";
+                backToTopBtn.style.transform = "translateY(1rem)";
+            }
+
+            if (scrollTop > 50) {
+                navbar.classList.add("shadow-lg");
+            } else {
+                navbar.classList.remove("shadow-lg");
+            }
+
+            lastScrollTop = scrollTop;
+        }, { passive: true });
+
+        backToTopBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     </script>
 </body>
+
 </html>
