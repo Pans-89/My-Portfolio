@@ -99,17 +99,10 @@
         /* Minimums tuned for 390px iPhone 12/15 Pro — no overlap, no scrollbar */
         .text-fluid-hero {
             font-size: clamp(2.5rem, 10vw, 11rem);
-            line-height: 1.0;
             text-wrap: balance;
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
-        }
-
-        @media (min-width: 768px) {
-            .text-fluid-hero {
-                line-height: 0.9;
-            }
         }
 
         .text-fluid-section {
@@ -197,7 +190,7 @@
                 become partners</p>
 
             <!-- FIX: Uses fluid clamp() via .text-fluid-hero for seamless scaling from 320px to 1400px -->
-            <h1 class="font-display text-fluid-hero font-extrabold uppercase tracking-tighter break-words reveal delay-100"
+            <h1 class="font-display text-fluid-hero font-extrabold uppercase tracking-tighter leading-[1.1] md:leading-[0.8] break-words reveal delay-100"
                 style="hyphens: auto;">
                 Network<br class="hidden md:block">
                 <span class="text-gray-300">Engineer</span>
